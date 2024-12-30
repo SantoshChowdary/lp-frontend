@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {Container, FormWrapper, Title, Input, Button} from './StyledComponents'
 import { userAuthStore } from '../../stores/userAuthStore';
 import { useNavigate } from 'react-router-dom';
 import { responseStrings } from '../../../Common/constants';
-
+import Loader from '../../../Common/components/Loader';
 
 const LoginOrSignUpComponent = () => {
-  const [mobileNumber, setMobileNumber] = useState('');
+  const [mobileNumber, setMobileNumber] = useState<string>('');
+  const [isLoaderEnabled, setLoadingStatus] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +16,7 @@ const LoginOrSignUpComponent = () => {
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
+    setLoadingStatus(true);
     e.preventDefault();
 
     let digits = "0123456789";
@@ -31,7 +33,9 @@ const LoginOrSignUpComponent = () => {
         navigate("/verify")
     } else if (result === responseStrings.INVALID_USER) {
        navigate("/signup")
-    }
+    };
+
+    setLoadingStatus(false);
   };
 
   return (
@@ -51,7 +55,8 @@ const LoginOrSignUpComponent = () => {
               type="submit"
               disabled={!(mobileNumber.length === 10)}
             >
-            Enter
+              {!isLoaderEnabled && <span>Enter</span>}
+              {isLoaderEnabled && <Loader />}
             </Button>
         </div>
       </FormWrapper>

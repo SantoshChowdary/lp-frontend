@@ -4,7 +4,8 @@ import axios from 'axios';
 
 export const validateUserService = async (mobileNumber: string) => {
     try {
-        const response = await axios.post("http://localhost:3000/auth/v1/login/"+mobileNumber);
+        // const response = await axios.post("http://localhost:3000/auth/v1/login/"+mobileNumber);
+        const response = await axios.post("https://lp-backend-0cw2.onrender.com/auth/v1/login/"+mobileNumber);
         // LOGIN_SUCCESS, INVALID_USER, SERVER_ERROR
         if (response.status === 200 && response.data === responseStrings.LOGIN_SUCCESS){
             return responseStrings.LOGIN_SUCCESS;
@@ -27,7 +28,7 @@ export const validateUserPassword = async (mobileNumber: string, password: strin
     };
 
     try {
-        const response = await axios.post("http://localhost:3000/auth/v1/verify/", JSON.stringify(userData), {
+        const response = await axios.post("https://lp-backend-0cw2.onrender.com/auth/v1/verify/", JSON.stringify(userData), {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -39,5 +40,18 @@ export const validateUserPassword = async (mobileNumber: string, password: strin
         } else {
             window.alert("Something went wrong! Please try again later");
         }
+    }
+};
+
+export const addNewUserService = async (userData: any) => {
+    try {
+        const response = await axios.post("", JSON.stringify(userData), {
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        });
+        console.log(response)
+    } catch (err) {
+        console.log("err", err)
     }
 }

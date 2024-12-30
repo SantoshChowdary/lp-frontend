@@ -6,3 +6,4 @@ export const signUpAPI = "/auth/v1/signup/"; // POST
 
 
 
+const mainURL = "https://lp-backend-0cw2.onrender.com";

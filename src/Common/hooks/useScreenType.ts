@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
+import { screenTypes } from "../constants";
 
 const useScreenType = () => {
-    
-    const screenTypes = {
-        MOBILE : "MOBILE",
-        TABLET : "TABLET",
-        LAPTOP : "LAPTOP",
-        NONE : "NONE"
-    };
 
     const [screenType, setScreenType] = useState(screenTypes.NONE);
 

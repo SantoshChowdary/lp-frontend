@@ -3,10 +3,13 @@ import {Container, FormWrapper, Title, Input, Button, WrongPassword} from './Sty
 import { userAuthStore } from '../../stores/userAuthStore';
 import { useNavigate } from 'react-router-dom';
 import { responseStrings } from '../../../Common/constants';
+import Loader from '../../../Common/components/Loader';
+
 
 const VerifyPasswordComponent = () => {
   const [password, setPassword] = useState('');
-  const [isPasswordWrong, setPasswordWrongStatus] = useState(false)
+  const [isPasswordWrong, setPasswordWrongStatus] = useState<boolean>(false);
+  const [isLoaderEnabled, setLoadingStatus] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -15,13 +18,15 @@ const VerifyPasswordComponent = () => {
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
+    setLoadingStatus(true);
     e.preventDefault();
     const verifyStatus = await userAuthStore.checkUserPassword(password);
     if (verifyStatus === responseStrings.LOGIN_SUCCESS){
        navigate("/");
     } else if (verifyStatus === responseStrings.INVALID_PASSWORD){
       setPasswordWrongStatus(true)
-    }
+    };
+    setLoadingStatus(false);
   };
 
   useEffect(()=>{
@@ -48,7 +53,8 @@ const VerifyPasswordComponent = () => {
               type="submit"
               disabled={!(password.length >= 4)}
             >
-            Verify
+            {!isLoaderEnabled && <span>Verify</span>}
+            {isLoaderEnabled && <Loader />}
             </Button>
         </div>
       </FormWrapper>

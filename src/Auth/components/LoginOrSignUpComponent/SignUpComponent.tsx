@@ -15,6 +15,9 @@ const SignUpComponent = () => {
     password : "",
     mobileNumber : userAuthStore.mobileNumber
   });
+
+  const [isExistingEmail, setEmailState] = useState(false);
+
   const navigate = useNavigate();
   
 
@@ -24,23 +27,27 @@ const SignUpComponent = () => {
     setUserData({
         ...userData,
         [e.target.name] : e.target.value
-    })
+    });
+    setEmailState(false);
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(userData)
+    // console.log(userData)
+
+    
+
   };
 
   const goBackToLogin = () => {
     navigate("/login")
   }
 
-  useEffect(()=>{
-    if (!userAuthStore.mobileNumber || userAuthStore.mobileNumber === ""){
-        navigate("/login");
-    };
-  })
+  // useEffect(()=>{
+  //   if (!userAuthStore.mobileNumber || userAuthStore.mobileNumber === ""){
+  //       navigate("/login");
+  //   };
+  // })
 
   return (
     <Container>
@@ -79,7 +86,7 @@ const SignUpComponent = () => {
             />
             <Button
               type="submit"
-              disabled={!buttonDisabled}
+              // disabled={!buttonDisabled}
             >
             Enter
             </Button>

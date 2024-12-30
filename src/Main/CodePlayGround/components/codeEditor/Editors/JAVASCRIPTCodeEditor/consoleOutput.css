@@ -1,0 +1,35 @@
+.react-ace-js-editor{
+    height: calc(100vh - 80px);
+    width: 100vw;
+    display: flex;
+}
+.js-code-editor{
+    max-width: 70vw;
+    width: 60vw;
+    min-width: 30vw;
+    height: inherit;
+}
+.console-output-main{
+    max-width: 70vw;
+    width: 40vw;
+    min-width: 30vw;
+}
+.console-output{
+    background-color: rgb(40, 42, 54);
+    width: 100%;
+    height: calc(100vh - 81px);
+    padding: 20px 0 0 10px;
+}
+.js-run-button{
+    padding : 10px;
+    width: 130px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: rgb(28, 116, 216);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.js-run-button:active{
+    background-color: rgb(137, 174, 217);
+}

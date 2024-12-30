@@ -1,0 +1,27 @@
+.bookmarks-section{
+    background-color: rgb(226, 238, 245);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius:  25px;
+    /* margin-left: calc(256px - 100vw); */
+    /* width: calc(100vw - 256px); */
+    padding : 40px 60px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100%;
+}
+.bookmarks-list{
+    margin-top: 40px;
+    padding: 0;
+}
+.bookmarks-heading{
+    font-size: 25px;
+    font-weight: 600;
+}
+/* @media screen and (max-width: 692px){
+    .bookmarks-section{
+        width: 100vw;
+        margin-left: -100vw;
+        border-radius: 0;
+    }
+} */

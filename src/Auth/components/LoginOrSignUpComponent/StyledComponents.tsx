@@ -1,5 +1,17 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
+
+// key frames
+const formFadeIn = keyframes`
+  0% {
+    opacity: 0;
+  } 50% {
+    margin-left: 30px;
+    opacity: 50%;
+  } 100% {
+    margin-left: 0;
+  }
+`
 
 // LoginContainer
 export const Container = styled.div`
@@ -34,6 +46,7 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   position: relative;
+  animation: ${formFadeIn} 1s ease-in-out ;
 `;
 
 export const Title = styled.p`
@@ -93,6 +106,7 @@ export const Button = styled.button`
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     background-color: #0056b3;
